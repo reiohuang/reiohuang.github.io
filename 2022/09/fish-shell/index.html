@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='輕量、快速的終端機'><title>Mac 安裝 Fish Shell</title>
+
+<link rel='canonical' href='https://reiohuang.github.io/2022/09/fish-shell/'>
+
+<link rel="stylesheet" href="/scss/style.min.ac77dcf8b111b51da39a92990f431923f210f3876d85798a2125667f96dc33a4.css"><meta property='og:title' content='Mac 安裝 Fish Shell'>
+<meta property='og:description' content='輕量、快速的終端機'>
+<meta property='og:url' content='https://reiohuang.github.io/2022/09/fish-shell/'>
+<meta property='og:site_name' content='Reno&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='shell' /><meta property='article:tag' content='fish shell' /><meta property='article:published_time' content='2022-09-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-09-10T00:00:00&#43;00:00'/><meta property='og:image' content='https://images.unsplash.com/photo-1544552866-d3ed42536cfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80' />
+<meta name="twitter:title" content="Mac 安裝 Fish Shell">
+<meta name="twitter:description" content="輕量、快速的終端機"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://images.unsplash.com/photo-1544552866-d3ed42536cfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80' />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QPL73FSCGK"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-QPL73FSCGK', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Reno&#39;s Blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>夜晚模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/2022/09/fish-shell/">
+                
+                    <img src="https://images.unsplash.com/photo-1544552866-d3ed42536cfd?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2071&amp;q=80" loading="lazy" alt="Featured image of post Mac 安裝 Fish Shell" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/dev-env/" >
+                Dev Env
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/2022/09/fish-shell/">Mac 安裝 Fish Shell</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            輕量、快速的終端機
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 10, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 2 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="所須套件">所須套件</h2>
+<p>▶ My shell setup:</p>
+<ul>
+<li>Fish shell: <a class="link" href="https://fishshell.com/"  target="_blank" rel="noopener"
+    >https://fishshell.com/</a></li>
+<li>Fisher: <a class="link" href="https://github.com/jorgebucaran/fisher"  target="_blank" rel="noopener"
+    >https://github.com/jorgebucaran/fisher</a></li>
+<li>Shellder: <a class="link" href="https://github.com/simnalamburt/shellder"  target="_blank" rel="noopener"
+    >https://github.com/simnalamburt/shellder</a></li>
+<li>Nerd fonts: <a class="link" href="https://github.com/ryanoasis/nerd-fonts"  target="_blank" rel="noopener"
+    >https://github.com/ryanoasis/nerd-fonts</a></li>
+<li>z for fish: <a class="link" href="https://github.com/jethrokuan/z"  target="_blank" rel="noopener"
+    >https://github.com/jethrokuan/z</a></li>
+<li>Exa: <a class="link" href="https://the.exa.website/"  target="_blank" rel="noopener"
+    >https://the.exa.website/</a></li>
+</ul>
+<h2 id="使用-homebrew-安裝-fish-shell">使用 Homebrew 安裝 Fish shell</h2>
+<p>開啟 Terminal 安裝套件管理工具 <a class="link" href="https://brew.sh/index_zh-tw"  target="_blank" rel="noopener"
+    >Homebrew</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">/bin/bash -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="k">)</span><span class="s2">&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接著執行以下兩行命令，將 Homebrew 添加到 PATH：
+<img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/dev-env%2Ffish%20shell%2FCleanShot%202022-09-09%20at%2001.24.49.png?alt=media&amp;token=df85de92-1570-478d-8d30-8d7f6cf8eb65"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>透過 Homebrew 安裝 Fish shell</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">brew install fish
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="設定-fish-shell-為預設-shell">設定 Fish shell 為預設 shell</h2>
+<ol>
+<li><strong>Add fish to the know shells</strong> run the command: 
+<code>sudo sh -c 'echo /opt/homebrew/bin/fish &gt;&gt; /etc/shells'</code></li>
+<li>Restart your terminal</li>
+<li><strong>Set fish as the default shell</strong> run the command: 
+<code>chsh -s /opt/homebrew/bin/fish</code></li>
+</ol>
+<p>在 Fish shell 中，<strong>錯誤的指令會以紅色顯示</strong>，但為什麼 <code>brew</code> 也顯示紅色？
+<img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/dev-env%2Ffish%20shell%2FCleanShot%202022-09-09%20at%2007.08.02.png?alt=media&amp;token=d2e88650-bc2c-4a48-b54f-c67e6c3bb019"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>將 <code>brew</code> 加入 fish 路徑可解決</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">set</span> -U fish_user_paths /opt/homebrew/bin/ <span class="nv">$fish_user_paths</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/dev-env%2Ffish%20shell%2FCleanShot%202022-09-09%20at%2007.58.27.png?alt=media&amp;token=879372db-6d7f-42ee-8794-65f4cb234ddc"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="安裝-fisher-套件管理">安裝 Fisher 套件管理</h2>
+<p><a class="link" href="https://github.com/jorgebucaran/fisher"  target="_blank" rel="noopener"
+    >Fisher 套件管理</a></p>
+<p>shell 輸入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">curl -sL https://git.io/fisher <span class="p">|</span> <span class="nb">source</span> <span class="o">&amp;&amp;</span> fisher install jorgebucaran/fisher
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用 install 命令安裝套件，後接 GitHub 上存儲庫的路徑。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">fisher install &lt;GH_ REPOSITORY&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如安裝套件 Z</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">fisher install jethrokuan/z
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="查看已安裝套件">查看已安裝套件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">fisher list
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/dev-env%2Ffish%20shell%2FCleanShot%202022-09-09%20at%2009.09.34.png?alt=media&amp;token=4129c9c3-3705-4275-8163-8b336ffaaa1b"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="指令操作">指令操作</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">fisher install <span class="c1"># 安裝套件</span>
+</span></span><span class="line"><span class="cl">fisher remove <span class="c1"># 移除套件</span>
+</span></span><span class="line"><span class="cl">fisher list <span class="c1"># 查看已安裝套件</span>
+</span></span><span class="line"><span class="cl">fisher update <span class="c1"># 更新所有套件</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安裝-oh-my-fish">安裝 Oh My Fish</h2>
+<p><a class="link" href="https://github.com/oh-my-fish/oh-my-fish"  target="_blank" rel="noopener"
+    >oh-my-fish</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install <span class="p">|</span> fish
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安裝好 Oh-my-fish 後，可以安裝喜歡的<a class="link" href="https://github.com/oh-my-fish/oh-my-fish/blob/master/docs/Themes.md#agnoster"  target="_blank" rel="noopener"
+    >主題</a>。</p>
+<h3 id="安裝-shellder-主題">安裝 shellder 主題</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">omf install https://github.com/simnalamburt/shellder
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/dev-env%2Ffish%20shell%2FCleanShot%202022-09-09%20at%2018.25.26.png?alt=media&amp;token=458126c1-e237-4d80-b9d8-403bd42442ea"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>查看已安裝主題</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">omf theme
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>已安裝的主題有 agnoster 和 shellder</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/dev-env%2Ffish%20shell%2FCleanShot%202022-09-09%20at%2018.28.21.png?alt=media&amp;token=0a8ce401-11e5-4574-9d71-e48bedd511f6"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>配置主題</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">omf theme shellder
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="移除主題">移除主題</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">omf remove agnoster
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="指令操作-1">指令操作</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">omf list   <span class="c1"># 列出所有安裝  </span>
+</span></span><span class="line"><span class="cl">omf theme   <span class="c1"># 查看已安裝和可安裝主題  </span>
+</span></span><span class="line"><span class="cl">omf install shellder   <span class="c1"># 安裝主題(失效時可用網址取代如下)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># omf也可以指定url安装package</span>
+</span></span><span class="line"><span class="cl">omf install https://github.com/simnalamburt/shellder 
+</span></span><span class="line"><span class="cl">omf theme shellder   <span class="c1"># 配置主題  </span>
+</span></span><span class="line"><span class="cl">omf remove agnoster   <span class="c1"># 移除主題  </span>
+</span></span><span class="line"><span class="cl">omf search nvm   <span class="c1"># 搜索主題或套件  </span>
+</span></span><span class="line"><span class="cl">omf update omf   <span class="c1"># 僅更新核心功能  </span>
+</span></span><span class="line"><span class="cl">omf update   <span class="c1"># 更新全部  </span>
+</span></span><span class="line"><span class="cl">omf doctor   <span class="c1"># 報錯處理  </span>
+</span></span><span class="line"><span class="cl">omf destroy   <span class="c1"># 卸載</span>
+</span></span><span class="line"><span class="cl">omf -h   <span class="c1"># 幫助</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安裝-meslolgs-字型與-nerd-fonts-字體">安裝 MesloLGS 字型與 Nerd Fonts 字體</h2>
+<p>當無法正確顯示字型與特殊 Icon 時：</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/dev-env%2Ffish%20shell%2FCleanShot%202022-09-09%20at%2018.43.07.png?alt=media&amp;token=cd39459d-a0a3-4023-b5ee-db758dfe5eaa"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ol>
+<li>安裝四個字型
+<ul>
+<li><a class="link" href="https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf"  target="_blank" rel="noopener"
+    >MesloLGS NF Regular.ttf</a></li>
+<li><a class="link" href="https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Bold.ttf"  target="_blank" rel="noopener"
+    >MesloLGS NF Bold.ttf</a></li>
+<li><a class="link" href="https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Italic.ttf"  target="_blank" rel="noopener"
+    >MesloLGS NF Italic.ttf</a></li>
+<li><a class="link" href="https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Bold%20Italic.ttf"  target="_blank" rel="noopener"
+    >MesloLGS NF Bold Italic.ttf</a></li>
+</ul>
+</li>
+<li>安裝  <a class="link" href="https://github.com/ryanoasis/nerd-fonts"  target="_blank" rel="noopener"
+    >Nerd Fonts</a></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">brew tap homebrew/cask-fonts
+</span></span><span class="line"><span class="cl">brew install --cask font-hack-nerd-font
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>字型安裝完成後，Terminal 設定 &gt; 偏好設定 &gt; 描述檔， 更改字體為 <strong>Meslo LG S NF</strong> 。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/dev-env%2Ffish%20shell%2FCleanShot%202022-09-09%20at%2019.02.47.png?alt=media&amp;token=8f4c9aca-e8db-4c8f-b054-7ae77e04d3fd"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="可視化配置">可視化配置</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">fish_config
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="安裝其它套件">安裝其它套件</h2>
+<h3 id="z-directory-jumper">Z (Directory jumper)</h3>
+<p>套件 <a class="link" href="https://github.com/jethrokuan/z"  target="_blank" rel="noopener"
+    >z</a>
+類似於 <a class="link" href="https://github.com/wting/autojump"  target="_blank" rel="noopener"
+    >autojump</a> ，快速移到到想去的資料夾。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">fisher install jethrokuan/z
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="sponge">sponge</h3>
+<p>失敗或是打錯的指令不會記錄到歷史清單中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">fisher install andreiborisov/sponge
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="exa">exa</h3>
+<p>安裝套件 <a class="link" href="https://the.exa.website/"  target="_blank" rel="noopener"
+    >exa</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">brew install exa
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>顯示圖標</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">exa -l -g --icons
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/dev-env%2Ffish%20shell%2FCleanShot%202022-09-09%20at%2021.02.30.png?alt=media&amp;token=f647d7b6-7116-494f-9544-f4262bdb4b13"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h4 id="tree-view">tree view</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">exa --tree <span class="c1"># 看全層</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/dev-env%2Ffish%20shell%2FCleanShot%202022-09-09%20at%2021.33.35.png?alt=media&amp;token=9ae14f53-261f-4473-ab70-07e1a0f96a0c"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">exa --tree --level<span class="o">=</span><span class="m">2</span> -a <span class="c1"># 看下兩層</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/dev-env%2Ffish%20shell%2FCleanShot%202022-09-10%20at%2008.19.42.png?alt=media&amp;token=f5461628-5164-4748-a447-47c7d6a30c4b"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="config">Config</h2>
+<h3 id="alias">alias</h3>
+<p>使用 vim 編輯 config.fish 設定檔</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">vim ~/.config/fish/config.fish
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>設定別名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">alias</span> ll <span class="s2">&#34;exa -l -g --icons&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">alias</span> lla <span class="s2">&#34;ll -a&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>設定完成後要重開 terminal 才會生效</p>
+<h2 id="參考資源">參考資源</h2>
+<ul>
+<li><a class="link" href="https://gist.github.com/gagarine/cf3f65f9be6aa0e105b184376f765262"  target="_blank" rel="noopener"
+    >Installing Fish shell on MacOS (Intel and M1)</a></li>
+<li><a class="link" href="https://mileschou.me/note/linux/fish"  target="_blank" rel="noopener"
+    >https://mileschou.me/note/linux/fish</a></li>
+<li><a class="link" href="https://www.kwchang0831.dev/dev-env/ubuntu/fish"  target="_blank" rel="noopener"
+    >Ubuntu 安裝 Fish Shell + Oh My Fish + Tide 與各種插件</a></li>
+<li><a class="link" href="https://noob.tw/fish-shell/"  target="_blank" rel="noopener"
+    >Fish shell：讓指令更接近懶人使用</a></li>
+<li><a class="link" href="https://youtu.be/KKxhf50FIPI"  target="_blank" rel="noopener"
+    >My Fish shell workflow for coding</a></li>
+<li><a class="link" href="https://jackblackevo.github.io/2017/02/27/fish-shell.html"  target="_blank" rel="noopener"
+    >以 fish 做為預設的 shell</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/shell/">shell</a>
+        
+            <a href="/tags/fish-shell/">fish shell</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="reiohuang/reiohuang.github.io"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2022 Reno&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.13.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#所須套件">所須套件</a></li>
+    <li><a href="#使用-homebrew-安裝-fish-shell">使用 Homebrew 安裝 Fish shell</a></li>
+    <li><a href="#設定-fish-shell-為預設-shell">設定 Fish shell 為預設 shell</a></li>
+    <li><a href="#安裝-fisher-套件管理">安裝 Fisher 套件管理</a>
+      <ol>
+        <li><a href="#查看已安裝套件">查看已安裝套件</a></li>
+        <li><a href="#指令操作">指令操作</a></li>
+      </ol>
+    </li>
+    <li><a href="#安裝-oh-my-fish">安裝 Oh My Fish</a>
+      <ol>
+        <li><a href="#安裝-shellder-主題">安裝 shellder 主題</a></li>
+        <li><a href="#移除主題">移除主題</a></li>
+        <li><a href="#指令操作-1">指令操作</a></li>
+      </ol>
+    </li>
+    <li><a href="#安裝-meslolgs-字型與-nerd-fonts-字體">安裝 MesloLGS 字型與 Nerd Fonts 字體</a></li>
+    <li><a href="#可視化配置">可視化配置</a></li>
+    <li><a href="#安裝其它套件">安裝其它套件</a>
+      <ol>
+        <li><a href="#z-directory-jumper">Z (Directory jumper)</a></li>
+        <li><a href="#sponge">sponge</a></li>
+        <li><a href="#exa">exa</a>
+          <ol>
+            <li><a href="#tree-view">tree view</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#config">Config</a>
+      <ol>
+        <li><a href="#alias">alias</a></li>
+      </ol>
+    </li>
+    <li><a href="#參考資源">參考資源</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

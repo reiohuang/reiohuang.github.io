@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>hugo on Reno&#39;s Blog</title>
+        <link>https://reiohuang.github.io/tags/hugo/</link>
+        <description>Recent content in hugo on Reno&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-tw</language>
+        <lastBuildDate>Thu, 15 Sep 2022 08:52:34 +0800</lastBuildDate><atom:link href="https://reiohuang.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>部署 Hugo 靜態網站</title>
+        <link>https://reiohuang.github.io/2022/09/hugo-stack/</link>
+        <pubDate>Thu, 15 Sep 2022 08:52:34 +0800</pubDate>
+        
+        <guid>https://reiohuang.github.io/2022/09/hugo-stack/</guid>
+        <description>&lt;img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="Featured image of post 部署 Hugo 靜態網站" /&gt;&lt;h2 id=&#34;在-mac-上使用-hugo-運行個人網站&#34;&gt;在 Mac 上使用 Hugo 運行個人網站&lt;/h2&gt;
+&lt;p&gt;先安裝 Homebrew，再透過 Homebrew 安裝 hugo &lt;code&gt;brew install hugo&lt;/code&gt;。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew install hugo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/CaiJimmy/hugo-theme-stack&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CaiJimmy/hugo-theme-stack: Card-style Hugo theme designed for bloggers&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://themes.gohugo.io/themes/hugo-theme-stack/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Stack | Hugo Themes (gohugo.io)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://note.duranhsieh.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Duran 的速寫筆記 (duranhsieh.com)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下載 Stack 主題，解壓縮後：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 exampleSite 裡新建資料夾 themes&lt;/li&gt;
+&lt;li&gt;將 exampleSite 資料夾拉出來放外層&lt;/li&gt;
+&lt;li&gt;去掉 master，將 hugo-theme-stack-master 改名為 hugo-theme-stack 放入 themes 中。
+&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-11%20at%2019.48.46.png?alt=media&amp;amp;token=73606061-dc7d-4e7c-ae8e-1e8273435031&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在終端機，於 exampleSite 資料夾路徑下輸入 &lt;code&gt;hugo server&lt;/code&gt; 運行網站
+&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-11%20at%2020.38.59.png?alt=media&amp;amp;token=04599c84-109c-4725-aeb9-3d1163edf2b0&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;出現 http://localhost:1313/ 時，表示個人網站已經成功運行起來，將這行網址貼到瀏覽器，就會發現 Stack 這個主題的個人網站，已經成功在電腦上執行。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!note]
+如果無法執行，可用無痕視窗開啟&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;config-參數設定&#34;&gt;Config 參數設定&lt;/h2&gt;
+&lt;p&gt;Config 格式若為 &lt;code&gt;toml&lt;/code&gt; 檔時，使用 VSCode 安裝 TOML 插件。
+&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-11%20at%2022.51.19.png?alt=media&amp;amp;token=1c426253-38b6-4d48-b922-fcb32ffc441a&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;基本參數&#34;&gt;基本參數&lt;/h3&gt;
+&lt;p&gt;修改 config.yaml 檔中的預設參數設定&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-11%20at%2023.44.17.png?alt=media&amp;amp;token=ec54a6dc-be7a-4cf7-8b57-5a1ec48474e0&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;baseURL 網站網址&lt;/li&gt;
+&lt;li&gt;paginate 分頁連結，每頁顯示文章數。&lt;/li&gt;
+&lt;li&gt;title 網站標籤&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在終端機上輸入 &lt;code&gt;hugo server&lt;/code&gt; 將網站運行起來，可以看到標籤已經變成 Reno&amp;rsquo;s Blog。
+&lt;img src=&#34;https://i.imgur.com/dpX4oie.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;permalinks&#34;&gt;permalinks&lt;/h3&gt;
+&lt;p&gt;自訂每篇文章的網址：
+在每篇文章裡加 &lt;code&gt;slug&lt;/code&gt;，會用自定義的 &lt;code&gt;fish-shell&lt;/code&gt; 作為網址。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-12%20at%2008.31.03.png?alt=media&amp;amp;token=9a74e2ad-1695-424d-9c2f-a9859bf46d90&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;.yaml&lt;/code&gt; 中的設定&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-12%20at%2009.00.13.png?alt=media&amp;amp;token=41058a65-bacc-4ba9-93a4-a457bbb03d39&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;site-creation-time-站點建立時間&#34;&gt;Site creation time 站點建立時間&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-12%20at%2021.14.59.png?alt=media&amp;amp;token=fd0bb02f-6999-4657-b3f8-760cfaaa99aa&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-12%20at%2021.15.58.png?alt=media&amp;amp;token=e4ff3711-e092-4dc4-8813-df61d9a46f44&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;social-site&#34;&gt;social site&lt;/h3&gt;
+&lt;p&gt;社交網站的連結設定&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-12%20at%2002.11.38.png?alt=media&amp;amp;token=8145ee04-294a-4681-8746-b9d51252eaac&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-12%20at%2002.11.10.png?alt=media&amp;amp;token=b2df05ee-34db-4967-822a-8b933d5c8b06&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;新增文章&#34;&gt;新增文章&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo new post/fish-shell.md
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;會在 &lt;code&gt;/content/post&lt;/code&gt; 資料夾中建立 fish-shell.md。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2011.00.34.png?alt=media&amp;amp;token=baa1f315-52a0-40d1-ae0d-c2cb8284cc8f&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;分類文章為文章加上標籤&#34;&gt;分類文章、為文章加上標籤&lt;/h3&gt;
+&lt;h4 id=&#34;頭字段front-matter&#34;&gt;頭字段(Front Matter)&lt;/h4&gt;
+&lt;p&gt;line1~13 是 hugo 的文章設定，新建立的文章最前面都需貼上 &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/content-management/front-matter/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Fron Matter&lt;/a&gt; 設定。
+&lt;a class=&#34;link&#34; href=&#34;https://ithelp.ithome.com.tw/articles/10243676&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Hugo Content - Front Matter&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-12%20at%2009.14.05.png?alt=media&amp;amp;token=732e8e76-8c46-4fe8-a932-ecfb057d2480&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;title: 文章標題
+description: 負標題，這篇文章的簡短介紹。
+date: 撰寫日期，Hugo 預設會把最新的文章放在最前面。
+draft: 可以指定這篇文章是不是草稿，Hugo 不會把標註為草稿(true)的文章顯示在網站上。
+image: 標題圖片
+pinned = true: 文章置頂&lt;/p&gt;
+&lt;p&gt;line6~11: 可為文章進行分類(categories)，以及加上標籤(tags)。&lt;/p&gt;
+&lt;h2 id=&#34;部署到-github-pages&#34;&gt;部署到 Github Pages&lt;/h2&gt;
+&lt;p&gt;cd 到 Hugo 專案底下，執行 &lt;code&gt;hugo&lt;/code&gt; 指令，打包 Hugo Site。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2009.09.25.png?alt=media&amp;amp;token=7038328e-0bf5-4f9e-98f1-d6d41b9f0782&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;回到 Finder 上，會發現在 example Site 裡面多了一個 public 的資料夾，就是 Hugo 新產生出來的個人網站的程式碼。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-12%20at%2009.46.36.png?alt=media&amp;amp;token=c9f1fbe5-f6b8-4f30-a312-7ac3dfb74a3f&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;複製 public 裡面全部的檔案跟資料夾放到==本地端== &lt;code&gt;reiohuang.github.io&lt;/code&gt; 資料夾的 repository 裡，最後再把它上傳到遠端 Github 的 &lt;code&gt;reiohuang.github.io&lt;/code&gt; 資料夾上。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2009.15.00.png?alt=media&amp;amp;token=5c27b8c5-11b0-4905-bc31-5692e89b060f&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;git 初始化本地端 &lt;code&gt;reiohuang.github.io&lt;/code&gt; 資料夾準備與遠端的 repository 綁定：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git init
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git add .
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git ci -m &lt;span class=&#34;s1&#34;&gt;&amp;#39;my first commit&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2009.16.51.png?alt=media&amp;amp;token=0fce9116-63c2-4a3f-b8e4-776ff1cc8520&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在 Github 中點擊 New repository，創建一個新的 repository。如果要使用 Github Pages 來架設個人網站，repository 的名字有命名規則，&lt;code&gt;Github 帳號.github.io&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2009.25.50.png?alt=media&amp;amp;token=2a084ce2-0087-4720-8da3-36194adf223f&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;若使用 token 連接遠端時，需切換到 HTTPS&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2013.13.57.png?alt=media&amp;amp;token=03a6d408-a827-4933-9f15-5effebed3727&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Github 在 2021/08/13 時，做了一次安全性更新，將密碼認證移除了。所以當本地 push 到遠端時，出現了以下提示訊息，表示需要重新調整設定，以 token 取代密碼，設定方式請參照 [[GitHub 改版使用個人令牌(token)]]。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/dev-env%2FGit%2FCleanShot%202022-09-13%20at%2009.59.29.png?alt=media&amp;amp;token=3a26c0d9-24f4-41a4-b90d-9ad20aacb12d&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;本地端的資料夾與遠端儲存庫綁定，並 push 資料到 GitHub 遠端，Password 請輸入申請的 token。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2013.28.24.png?alt=media&amp;amp;token=ce441e2a-571d-4e82-a8ba-9d70581fb86a&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;成功上傳到 GitHub&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2013.30.32.png?alt=media&amp;amp;token=bedf21b9-61a7-496b-9914-f4360f026fb0&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;開啟瀏覽器，網址列輸入 &lt;code&gt;reiohuang.github.io&lt;/code&gt;，即可看到 Github Pages 已經成功地幫我們把 Hugo 的個人網站程式碼轉換成網站。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2013.32.09.png?alt=media&amp;amp;token=d56ea145-ae73-4ace-95c4-7bd30d4efb67&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;每次新增、修改文章時，記得最前面要貼上 Hugo 的文章設定，才能正常顯示。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;添加評論功能&#34;&gt;添加評論功能&lt;/h2&gt;
+&lt;p&gt;需要依靠其他的第三方網站才能達成，原理是因為 Github Pages 他是屬於靜態網頁，而評論功能是需要後端資料庫儲存，如果只使用 Github Pages 是沒有辦法加入評論功能。&lt;/p&gt;
+&lt;p&gt;進入 Hugo 首頁，Search the Docs 輸入 comments，點擊第一個&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/content-management/comments/#readout&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;連結&lt;/a&gt;，Hugo 預設支持的評論功能網站是 Disqus，所以要先進到 Disqus 這個網站申請一個帳號，在 Disqus 創建一個評論功能之後再回頭修改程式碼，把 Disqus 的帳號跟個人網站連結在一起。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2013.40.43.png?alt=media&amp;amp;token=9ac8b15b-32be-48a5-930c-d8d355d1a8dc&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：雖然 Hugo 預設支持的評論功能是 Disqus 網站，但是有的 Hugo 主題可能沒有開啟這個功能，所以要先檢查主題有沒有辦法加入評論功能。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在 &lt;code&gt;config.yaml&lt;/code&gt; 設定檔裡面有找到 disqusShortname 的設定的話，就表示你使用的 Hugo 主題是支持 Disqus 評論功能，把申請的 Disqus 評論功能帳號填在這裡即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2016.37.50.png?alt=media&amp;amp;token=b915adc7-44a5-4260-9512-eda15ab48176&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;disqus-評論功能&#34;&gt;Disqus 評論功能&lt;/h3&gt;
+&lt;p&gt;註冊 Disqus 後，點選 Add Disqus To Site 後，頁面拉到最下面點擊 GET STARTED 按鈕。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2016.48.40.png?alt=media&amp;amp;token=eeee3c83-e0e7-4ea8-851b-e56bc73ef23b&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;選擇下面 I want to install Disqus on my site&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2016.51.25.png?alt=media&amp;amp;token=102f8ebe-2d48-406a-a281-61450444510c&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;註冊網站&#34;&gt;註冊網站&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2016.53.29.png?alt=media&amp;amp;token=5a4a5dad-364c-487a-8f21-440041051995&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;選取最下面 Basic 免費方案，點擊 Subscribe Now 按鈕。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2016.55.14.png?alt=media&amp;amp;token=80869e7c-8e0f-4e01-882c-c4fdd19ad9cd&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;因為 Hugo 平台沒有在選項裡面，所以選取最下面的 &lt;code&gt;Universal Code&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2016.58.05.png?alt=media&amp;amp;token=81c54015-89b4-4a27-97f5-f79dbf16b930&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;拉到最下面點擊 Configure 按鈕&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2016.59.09.png?alt=media&amp;amp;token=3d60c911-e8b4-4a36-af63-cb1549216062&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;設定-disqus&#34;&gt;設定 Disqus&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2017.04.34.png?alt=media&amp;amp;token=f980469a-a7fd-42b6-95ed-0e81a0b6fe2f&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Website URL：
+打上 Github Pages 幫我們架設的個人網站的網址&lt;/p&gt;
+&lt;p&gt;Appearance：
+可以選擇在個人網站上面呈現的評論系統要是什麼顏色，如果是 Auto 就會自動偵測你網站的顏色選擇適合的主題。&lt;/p&gt;
+&lt;h4 id=&#34;comment-and-moderation-settings-評論和審核設置&#34;&gt;Comment and Moderation Settings 評論和審核設置&lt;/h4&gt;
+&lt;p&gt;依喜好選擇，點擊 Complete Setup 按鈕後，最後再點擊 Dismiss Setup。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2017.09.52.png?alt=media&amp;amp;token=3116a1c9-65cb-4c66-b8cc-abc1cd7a8588&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;configyaml-設定&#34;&gt;config.yaml 設定&lt;/h4&gt;
+&lt;p&gt;disqusShortname 改成剛剛在 Disqus 上面申請的 Website Name 的值。不知道的可以點擊右上角 Edit Settings，回去看 Shortname。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2017.16.32.png?alt=media&amp;amp;token=be1f37a3-8da5-44f3-b73d-dbe3a8f86f89&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2017.19.42.png?alt=media&amp;amp;token=d0d8bc3e-93b0-4520-87e4-6ffc1a611536&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;將 Shortname 貼到 config.yaml 設定檔後存檔&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2017.21.14.png?alt=media&amp;amp;token=857652ed-fef7-4d6a-8c1b-bab11cdf5504&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;執行 &lt;code&gt;hugo server&lt;/code&gt;，隨選一篇文章，拉到最下面。看到此段表示你的 Disqus 設定已經設定好。Disqus 評論功能只有在你將設定上傳到 Github 之後才會生效。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2017.26.13.png?alt=media&amp;amp;token=1b4ac53c-b90c-4b95-ad3f-1610c08838b6&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;回到終端機，按 &lt;code&gt;Ctrl+C&lt;/code&gt; 停止 &lt;code&gt;hugo server&lt;/code&gt; 運行，輸入 &lt;code&gt;hugo&lt;/code&gt; 產生個人網站的程式碼。&lt;/p&gt;
+&lt;p&gt;將 exampleSite &amp;gt; public 資料夾裡全部內容複製到 &lt;code&gt;reiohuang.github.io&lt;/code&gt; 資料夾中，勾選全部套用並取代。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2017.33.13.png?alt=media&amp;amp;token=9739568d-58e9-4a9f-a9db-6dc14c4a80fe&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;提交 commit(add disqus) 並 push 到 Github&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2017.39.05.png?alt=media&amp;amp;token=9eb87619-b972-475a-ba64-8e90a9ca8ac6&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;utterances-評論功能&#34;&gt;Utterances 評論功能&lt;/h3&gt;
+&lt;p&gt;捨棄 Disqus 的理由：&lt;a class=&#34;link&#34; href=&#34;https://bjmqfg83.github.io/blog/hugo_unnerances/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;如何在hugo上安裝utterances?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;把個人網站的評論跟 Github issues 討論區的功能結合在一起，別人只要來個人網站上留下評論，實際上就是在 Github repository 裡面開啟一個 issue，就可以在 issue 裡面看到所有的評論紀錄。如果要在 Hugo 上加入這個 Utterances 的評論功能，需要有 html 程式碼的基礎。&lt;/p&gt;
+&lt;p&gt;Utterances 評論產生的 issues 可以選擇你想放的 Repository 中：&lt;/p&gt;
+&lt;h4 id=&#34;issues-放在個人網站-repository&#34;&gt;issues 放在個人網站 Repository&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;安裝 &lt;a class=&#34;link&#34; href=&#34;https://github.com/apps/utterances&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Github App utterances&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2023.50.45.png?alt=media&amp;amp;token=b14eba58-8192-4697-957c-e9b07e1279a8&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;repository 選個人網站的 repository&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2007.13.59.png?alt=media&amp;amp;token=e6d9fcfc-3cf7-4df1-8799-d971dd6229ad&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;修改 config.yaml 如下圖紅框處&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2007.19.46.png?alt=media&amp;amp;token=a5017c09-1642-4d1d-aab5-773b535a516b&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;登入 Github 帳號後即可留言&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;留言會上傳到個人網站的 issue 區，別人只要來我的個人網站評論，就是在我的 Github repository 裡面開啟一個 issue。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2010.08.51.png?alt=media&amp;amp;token=dca396c2-4c0d-400e-a023-41bffe8643ca&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;issues-放在新創的-repository&#34;&gt;issues 放在新創的 Repository&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Create a new repository
+&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2023.49.10.png?alt=media&amp;amp;token=1982e1f1-9eea-4947-bf22-e373537e1bc5&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安裝 Github App utterances
+&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2023.50.45.png?alt=media&amp;amp;token=b14eba58-8192-4697-957c-e9b07e1279a8&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;選擇剛剛新創建的 Github repo &lt;code&gt;reiohuang/comment-utterances&lt;/code&gt;。
+&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2023.52.55.png?alt=media&amp;amp;token=1714ffe4-e24c-40a0-9039-cec7408991c5&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改 config.yaml 如下圖紅框處
+&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2000.04.45.png?alt=media&amp;amp;token=c1676896-c05c-446d-a48c-45c77fef7e33&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;登入 Github 帳號後即可留言
+&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2000.16.31.png?alt=media&amp;amp;token=62eccfcb-23b1-4d44-aa7b-f8e10dd5f696&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;留言測試
+&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2000.19.29.png?alt=media&amp;amp;token=09861ba8-3bf1-4790-844e-81a351c29cc7&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;留言會上傳到個人網站的 issue 區
+&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2006.38.30.png?alt=media&amp;amp;token=fb272e96-ffd0-40bb-a612-ee19379e64dc&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;添加-google-analytics&#34;&gt;添加 Google Analytics&lt;/h2&gt;
+&lt;p&gt;進到 &lt;a class=&#34;link&#34; href=&#34;https://analytics.google.com/analytics/web/provision/#/provision&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Google Analytics (分析)&lt;/a&gt;網站，點擊開始量測，開始 GA 的設定。&lt;/p&gt;
+&lt;p&gt;帳戶名稱可以隨意填，全部都打勾。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2010.43.35.png?alt=media&amp;amp;token=d57d3236-b2d7-41c2-9e62-7592c144ee6b&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;資源名稱填 Github 帳號，報表時區和幣別不用改。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2010.44.44.png?alt=media&amp;amp;token=70bab5a6-ff7a-4c74-a5e0-f1cbfc6596aa&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;點擊顯示進階選項，開啟「建立通用 Analytics 分析資源」的開關，在網站網址裡面 填上個人網站的網址。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2010.47.29.png?alt=media&amp;amp;token=3296ffca-e6d0-4d39-acdd-2e88c53e4baf&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如下圖點選：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2010.49.13.png?alt=media&amp;amp;token=5e1f865c-6576-40bc-8242-25066f10900a&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2010.49.13.png?alt=media&amp;amp;token=5e1f865c-6576-40bc-8242-25066f10900a&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;都打勾&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2010.50.47.png?alt=media&amp;amp;token=66064243-acaa-4e1d-adf3-ff1bab963c26&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;建議把「成效建議與最新消息」打勾，這樣可以收到每個月 GA 傳來的報表。
+&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2011.27.17.png?alt=media&amp;amp;token=97479179-cc58-4b8f-b1c8-05814d7ce48c&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;成功創建一個資源後，會出現一個評估 ID，先複製下來。回到 VS Code，打開 Hugo 設定檔，找到 Google Analytics 的 ID 設定，貼上剛剛複製的追蹤 ID。
+註：從 GA4 開始，使用 &lt;code&gt;G-&lt;/code&gt; 開頭的評估 ID，而不是 GA3 以 &lt;code&gt;UA-&lt;/code&gt; 開頭的追蹤 ID。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2011.18.37.png?alt=media&amp;amp;token=d3f6c2f0-eeb8-40b4-a6ef-ad0799e3c150&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在 &lt;code&gt;config.yaml&lt;/code&gt; 加上&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;googleAnalytics&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;l&#34;&gt;&amp;lt;GA4_評估_ID&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2019.09.52.png?alt=media&amp;amp;token=10ee1980-79b5-4390-a96b-107deb1c50f9&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;GA 的 ID 設定好之後，必須把這個改動上傳到 Github 才會生效。&lt;/p&gt;
+&lt;p&gt;接著使用 Hugo 產生個人網站的程式碼，終端機輸入 hugo，產生個人網站的程式碼，public 資料夾產生了新的程式碼。把新產生出來的程式碼複製到 &lt;code&gt;GitHub/reiohuang.github.io&lt;/code&gt; 資料夾，最後 push 到 GitHub 上，進到自己的個人網站。&lt;/p&gt;
+&lt;p&gt;回到 Google Analytics 頁面查看，狀態已被改成「已順利啟用資料收集功能」，表示個人網站已經成功跟 GA 連結，這樣以後就可以使用 GA 來分析個人網站的數據。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2022.14.15.png?alt=media&amp;amp;token=a6e5c106-1cd7-4111-a4f5-b1feb3a2dc79&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;主題無-googleanalytics-設定&#34;&gt;主題無 googleAnalytics 設定&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;若主題裡面找不到 googleAnalytics 的設定，是因為主題本身沒有開啟 GA 設定的關係，所以在設定檔才找不到可以填上 GA ID 的地方。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;解決辦法：自己刻，需要一點 html 的程式碼基礎。
+進入 Hugo 首頁，Search the Docs 輸入 google analytics，點擊第一個&lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/templates/internal#google-analytics&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;連結&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2023.48.15.png?alt=media&amp;amp;token=8d6a5471-9df4-426e-b54b-4d7ea1f80103&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;複製這行程式碼&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2023.52.36.png?alt=media&amp;amp;token=4bc692fe-f56d-4d9d-9cd5-f9236cf911cf&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;回到 VS Code，以本主題 Stack 為例，進到 themes 去更改主題裡面的設定，路徑：&lt;code&gt;themes &amp;gt; hugo-theme-stack &amp;gt; layouts &amp;gt; partials &amp;gt; head &amp;gt; head.html&lt;/code&gt;，把剛剛複製的程式碼貼到裡面。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2023.42.22.png?alt=media&amp;amp;token=a2b19001-1580-40bf-b8e4-b3f20ec3a01c&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;再回到 Hugo 的官方網站，選擇 yaml 格式，複製這行程式碼，貼到 config.yaml 設定檔。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2023.58.16.png?alt=media&amp;amp;token=1de67616-1208-4902-8975-d0bb4a615d7e&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;config.yaml 設定檔， 填上你的評估 ID(G-MEASUREMENT_ID)。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2019.09.52.png?alt=media&amp;amp;token=10ee1980-79b5-4390-a96b-107deb1c50f9&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;這樣就能讓沒有 googleAnalytics 設定的主題也支持 GA 設定，只要把自己的評估 ID 填在 G-MEASUREMENT_ID 即可。&lt;/p&gt;
+&lt;h2 id=&#34;添加-google-search-console&#34;&gt;添加 Google Search Console&lt;/h2&gt;
+&lt;p&gt;可以透過 Google 搜尋找到個人網站，如果想要讓文章可以通過 Google 搜尋被找到，就必須要為你的個人網站加上 Google Search Console 的功能。&lt;/p&gt;
+&lt;p&gt;有一個簡單的方法可以驗證自己的個人網站是否已經可以被 Google 查詢到，在 Google 首頁搜尋列中輸入 &lt;code&gt;site:個人網站網址&lt;/code&gt; 查詢。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2000.09.43.png?alt=media&amp;amp;token=cf74f3e5-a1f6-4330-aa9d-6381fed91611&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;如果你的 Google 搜尋結果只有出現「請使用 Google Search Console」，就表示別人目前還沒有辦法在 Google 搜尋裡找到你的個人網站。&lt;/p&gt;
+&lt;h3 id=&#34;新增資源&#34;&gt;新增資源&lt;/h3&gt;
+&lt;p&gt;點擊新增資源&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2000.11.02.png?alt=media&amp;amp;token=eddb2fa3-6b56-45e9-8392-c8064c752943&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;選擇右邊的這個網址前置字元，輸入個人網站的網址。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2000.16.15.png?alt=media&amp;amp;token=50c99db9-fa64-41f0-851d-ddd039e287cc&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;設定 Google Search Console 的功能，點擊左邊的 Sitemap 把我們的個人網站的 Sitemap 加到 Google Search Console 裡面，直接在後面填上 &lt;code&gt;sitemap.xml&lt;/code&gt;，點擊提交按鈕。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2000.18.10.png?alt=media&amp;amp;token=a0e45a17-5ad7-444d-81d1-1cc5b4ed64e7&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Google 之後會自己定期的去查看我們的 Sitemap，看看有沒有新的頁面出現，以後新增一篇文章，Google 就會自己發現，不用每次都還要重新上傳新的 Sitemap。&lt;/p&gt;
+&lt;h2 id=&#34;客製化現有主題&#34;&gt;客製化現有主題&lt;/h2&gt;
+&lt;h3 id=&#34;修改程式碼樣式&#34;&gt;修改程式碼樣式&lt;/h3&gt;
+&lt;p&gt;這個修改的方式跟其他的比較不一樣，需要從 Hugo 的設定檔 config.yaml 去修改，而不是改 css 樣式。
+在 Hugo 網頁搜尋列輸入 &lt;code&gt;markup&lt;/code&gt;，往下找到 &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/getting-started/configuration-markup#highlight&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Highlight&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2000.53.34.png?alt=media&amp;amp;token=82afe7a4-d510-4a0c-86a5-ff2a5682e5cc&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;style 就是去設定程式碼的呈現樣式，這邊預設的是使用 monokai。&lt;/p&gt;
+&lt;p&gt;回到 Hugo 官方文件，在設定檔的下面有兩個連結，可以看目前 Hugo 支持的程式碼主題樣式有哪一些，可以找出個人網站比較匹配的風格。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2000.54.44.png?alt=media&amp;amp;token=13e0a946-b883-48f1-9bf6-560855366792&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;把 style 主題名字替換成 &lt;code&gt;dracula&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2001.10.30.png?alt=media&amp;amp;token=8b886b5b-1eb3-4d02-b426-3a9a735ed3af&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;參考資料&#34;&gt;參考資料&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://docs.stack.jimmycai.com/zh/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Stack 官網&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://hugo-for-newbie.kejyun.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Hugo 新手道場&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.kermsite.com/p/hugostack%E4%B8%BB%E9%A2%98/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;KermsBlog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://yinhe.co/archives/20210401_hugo_theme_stack.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;hugo主題stack&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://blog.kermsite.com/p/hugo-adsense/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Hugo：插入Adsense代碼&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://medium.com/@chswei/%E5%9C%A8-github-%E9%83%A8%E7%BD%B2-hugo-%E9%9D%9C%E6%85%8B%E7%B6%B2%E7%AB%99-9c40682dfe40&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;在 GitHub 部署 Hugo 靜態網站&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

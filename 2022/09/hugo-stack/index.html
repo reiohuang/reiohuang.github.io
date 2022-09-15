@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="zh-tw" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='使用 Stack 主題'><title>部署 Hugo 靜態網站</title>
+
+<link rel='canonical' href='https://reiohuang.github.io/2022/09/hugo-stack/'>
+
+<link rel="stylesheet" href="/scss/style.min.ac77dcf8b111b51da39a92990f431923f210f3876d85798a2125667f96dc33a4.css"><meta property='og:title' content='部署 Hugo 靜態網站'>
+<meta property='og:description' content='使用 Stack 主題'>
+<meta property='og:url' content='https://reiohuang.github.io/2022/09/hugo-stack/'>
+<meta property='og:site_name' content='Reno&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='hugo' /><meta property='article:published_time' content='2022-09-15T08:52:34&#43;08:00'/><meta property='article:modified_time' content='2022-09-15T08:52:34&#43;08:00'/><meta property='og:image' content='https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80' />
+<meta name="twitter:title" content="部署 Hugo 靜態網站">
+<meta name="twitter:description" content="使用 Stack 主題"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80' />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QPL73FSCGK"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-QPL73FSCGK', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切換選單">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Reno&#39;s Blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>夜晚模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/2022/09/hugo-stack/">
+                
+                    <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80" loading="lazy" alt="Featured image of post 部署 Hugo 靜態網站" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/blog/" >
+                Blog
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/2022/09/hugo-stack/">部署 Hugo 靜態網站</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            使用 Stack 主題
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 15, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    閱讀時間: 4 分鐘
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="在-mac-上使用-hugo-運行個人網站">在 Mac 上使用 Hugo 運行個人網站</h2>
+<p>先安裝 Homebrew，再透過 Homebrew 安裝 hugo <code>brew install hugo</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew install hugo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack"  target="_blank" rel="noopener"
+    >CaiJimmy/hugo-theme-stack: Card-style Hugo theme designed for bloggers</a>
+<ul>
+<li><a class="link" href="https://themes.gohugo.io/themes/hugo-theme-stack/"  target="_blank" rel="noopener"
+    >Stack | Hugo Themes (gohugo.io)</a></li>
+<li><a class="link" href="https://note.duranhsieh.com/"  target="_blank" rel="noopener"
+    >Duran 的速寫筆記 (duranhsieh.com)</a></li>
+</ul>
+</li>
+</ul>
+<p>下載 Stack 主題，解壓縮後：</p>
+<ol>
+<li>在 exampleSite 裡新建資料夾 themes</li>
+<li>將 exampleSite 資料夾拉出來放外層</li>
+<li>去掉 master，將 hugo-theme-stack-master 改名為 hugo-theme-stack 放入 themes 中。
+<img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-11%20at%2019.48.46.png?alt=media&amp;token=73606061-dc7d-4e7c-ae8e-1e8273435031"
+	
+	
+	
+	loading="lazy"
+	
+	
+></li>
+</ol>
+<p>在終端機，於 exampleSite 資料夾路徑下輸入 <code>hugo server</code> 運行網站
+<img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-11%20at%2020.38.59.png?alt=media&amp;token=04599c84-109c-4725-aeb9-3d1163edf2b0"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>出現 http://localhost:1313/ 時，表示個人網站已經成功運行起來，將這行網址貼到瀏覽器，就會發現 Stack 這個主題的個人網站，已經成功在電腦上執行。</p>
+<blockquote>
+<p>[!note]
+如果無法執行，可用無痕視窗開啟</p>
+</blockquote>
+<h2 id="config-參數設定">Config 參數設定</h2>
+<p>Config 格式若為 <code>toml</code> 檔時，使用 VSCode 安裝 TOML 插件。
+<img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-11%20at%2022.51.19.png?alt=media&amp;token=1c426253-38b6-4d48-b922-fcb32ffc441a"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="基本參數">基本參數</h3>
+<p>修改 config.yaml 檔中的預設參數設定</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-11%20at%2023.44.17.png?alt=media&amp;token=ec54a6dc-be7a-4cf7-8b57-5a1ec48474e0"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ul>
+<li>baseURL 網站網址</li>
+<li>paginate 分頁連結，每頁顯示文章數。</li>
+<li>title 網站標籤</li>
+</ul>
+<p>在終端機上輸入 <code>hugo server</code> 將網站運行起來，可以看到標籤已經變成 Reno&rsquo;s Blog。
+<img src="https://i.imgur.com/dpX4oie.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="permalinks">permalinks</h3>
+<p>自訂每篇文章的網址：
+在每篇文章裡加 <code>slug</code>，會用自定義的 <code>fish-shell</code> 作為網址。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-12%20at%2008.31.03.png?alt=media&amp;token=9a74e2ad-1695-424d-9c2f-a9859bf46d90"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p><code>.yaml</code> 中的設定</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-12%20at%2009.00.13.png?alt=media&amp;token=41058a65-bacc-4ba9-93a4-a457bbb03d39"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="site-creation-time-站點建立時間">Site creation time 站點建立時間</h3>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-12%20at%2021.14.59.png?alt=media&amp;token=fd0bb02f-6999-4657-b3f8-760cfaaa99aa"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-12%20at%2021.15.58.png?alt=media&amp;token=e4ff3711-e092-4dc4-8813-df61d9a46f44"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="social-site">social site</h3>
+<p>社交網站的連結設定</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-12%20at%2002.11.38.png?alt=media&amp;token=8145ee04-294a-4681-8746-b9d51252eaac"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-12%20at%2002.11.10.png?alt=media&amp;token=b2df05ee-34db-4967-822a-8b933d5c8b06"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="新增文章">新增文章</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hugo new post/fish-shell.md
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>會在 <code>/content/post</code> 資料夾中建立 fish-shell.md。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2011.00.34.png?alt=media&amp;token=baa1f315-52a0-40d1-ae0d-c2cb8284cc8f"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="分類文章為文章加上標籤">分類文章、為文章加上標籤</h3>
+<h4 id="頭字段front-matter">頭字段(Front Matter)</h4>
+<p>line1~13 是 hugo 的文章設定，新建立的文章最前面都需貼上 <a class="link" href="https://gohugo.io/content-management/front-matter/"  target="_blank" rel="noopener"
+    >Fron Matter</a> 設定。
+<a class="link" href="https://ithelp.ithome.com.tw/articles/10243676"  target="_blank" rel="noopener"
+    >Hugo Content - Front Matter</a></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-12%20at%2009.14.05.png?alt=media&amp;token=732e8e76-8c46-4fe8-a932-ecfb057d2480"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>title: 文章標題
+description: 負標題，這篇文章的簡短介紹。
+date: 撰寫日期，Hugo 預設會把最新的文章放在最前面。
+draft: 可以指定這篇文章是不是草稿，Hugo 不會把標註為草稿(true)的文章顯示在網站上。
+image: 標題圖片
+pinned = true: 文章置頂</p>
+<p>line6~11: 可為文章進行分類(categories)，以及加上標籤(tags)。</p>
+<h2 id="部署到-github-pages">部署到 Github Pages</h2>
+<p>cd 到 Hugo 專案底下，執行 <code>hugo</code> 指令，打包 Hugo Site。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2009.09.25.png?alt=media&amp;token=7038328e-0bf5-4f9e-98f1-d6d41b9f0782"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>回到 Finder 上，會發現在 example Site 裡面多了一個 public 的資料夾，就是 Hugo 新產生出來的個人網站的程式碼。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-12%20at%2009.46.36.png?alt=media&amp;token=c9f1fbe5-f6b8-4f30-a312-7ac3dfb74a3f"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>複製 public 裡面全部的檔案跟資料夾放到==本地端== <code>reiohuang.github.io</code> 資料夾的 repository 裡，最後再把它上傳到遠端 Github 的 <code>reiohuang.github.io</code> 資料夾上。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2009.15.00.png?alt=media&amp;token=5c27b8c5-11b0-4905-bc31-5692e89b060f"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>git 初始化本地端 <code>reiohuang.github.io</code> 資料夾準備與遠端的 repository 綁定：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git ci -m <span class="s1">&#39;my first commit&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2009.16.51.png?alt=media&amp;token=0fce9116-63c2-4a3f-b8e4-776ff1cc8520"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>在 Github 中點擊 New repository，創建一個新的 repository。如果要使用 Github Pages 來架設個人網站，repository 的名字有命名規則，<code>Github 帳號.github.io</code>。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2009.25.50.png?alt=media&amp;token=2a084ce2-0087-4720-8da3-36194adf223f"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>若使用 token 連接遠端時，需切換到 HTTPS</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2013.13.57.png?alt=media&amp;token=03a6d408-a827-4933-9f15-5effebed3727"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Github 在 2021/08/13 時，做了一次安全性更新，將密碼認證移除了。所以當本地 push 到遠端時，出現了以下提示訊息，表示需要重新調整設定，以 token 取代密碼，設定方式請參照 [[GitHub 改版使用個人令牌(token)]]。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/dev-env%2FGit%2FCleanShot%202022-09-13%20at%2009.59.29.png?alt=media&amp;token=3a26c0d9-24f4-41a4-b90d-9ad20aacb12d"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>本地端的資料夾與遠端儲存庫綁定，並 push 資料到 GitHub 遠端，Password 請輸入申請的 token。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2013.28.24.png?alt=media&amp;token=ce441e2a-571d-4e82-a8ba-9d70581fb86a"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>成功上傳到 GitHub</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2013.30.32.png?alt=media&amp;token=bedf21b9-61a7-496b-9914-f4360f026fb0"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>開啟瀏覽器，網址列輸入 <code>reiohuang.github.io</code>，即可看到 Github Pages 已經成功地幫我們把 Hugo 的個人網站程式碼轉換成網站。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2013.32.09.png?alt=media&amp;token=d56ea145-ae73-4ace-95c4-7bd30d4efb67"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<blockquote>
+<p>每次新增、修改文章時，記得最前面要貼上 Hugo 的文章設定，才能正常顯示。</p>
+</blockquote>
+<h2 id="添加評論功能">添加評論功能</h2>
+<p>需要依靠其他的第三方網站才能達成，原理是因為 Github Pages 他是屬於靜態網頁，而評論功能是需要後端資料庫儲存，如果只使用 Github Pages 是沒有辦法加入評論功能。</p>
+<p>進入 Hugo 首頁，Search the Docs 輸入 comments，點擊第一個<a class="link" href="https://gohugo.io/content-management/comments/#readout"  target="_blank" rel="noopener"
+    >連結</a>，Hugo 預設支持的評論功能網站是 Disqus，所以要先進到 Disqus 這個網站申請一個帳號，在 Disqus 創建一個評論功能之後再回頭修改程式碼，把 Disqus 的帳號跟個人網站連結在一起。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2013.40.43.png?alt=media&amp;token=9ac8b15b-32be-48a5-930c-d8d355d1a8dc"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<blockquote>
+<p>注意：雖然 Hugo 預設支持的評論功能是 Disqus 網站，但是有的 Hugo 主題可能沒有開啟這個功能，所以要先檢查主題有沒有辦法加入評論功能。</p>
+</blockquote>
+<p>在 <code>config.yaml</code> 設定檔裡面有找到 disqusShortname 的設定的話，就表示你使用的 Hugo 主題是支持 Disqus 評論功能，把申請的 Disqus 評論功能帳號填在這裡即可。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2016.37.50.png?alt=media&amp;token=b915adc7-44a5-4260-9512-eda15ab48176"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="disqus-評論功能">Disqus 評論功能</h3>
+<p>註冊 Disqus 後，點選 Add Disqus To Site 後，頁面拉到最下面點擊 GET STARTED 按鈕。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2016.48.40.png?alt=media&amp;token=eeee3c83-e0e7-4ea8-851b-e56bc73ef23b"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>選擇下面 I want to install Disqus on my site</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2016.51.25.png?alt=media&amp;token=102f8ebe-2d48-406a-a281-61450444510c"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h4 id="註冊網站">註冊網站</h4>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2016.53.29.png?alt=media&amp;token=5a4a5dad-364c-487a-8f21-440041051995"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>選取最下面 Basic 免費方案，點擊 Subscribe Now 按鈕。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2016.55.14.png?alt=media&amp;token=80869e7c-8e0f-4e01-882c-c4fdd19ad9cd"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>因為 Hugo 平台沒有在選項裡面，所以選取最下面的 <code>Universal Code</code></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2016.58.05.png?alt=media&amp;token=81c54015-89b4-4a27-97f5-f79dbf16b930"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>拉到最下面點擊 Configure 按鈕</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2016.59.09.png?alt=media&amp;token=3d60c911-e8b4-4a36-af63-cb1549216062"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h4 id="設定-disqus">設定 Disqus</h4>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2017.04.34.png?alt=media&amp;token=f980469a-a7fd-42b6-95ed-0e81a0b6fe2f"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Website URL：
+打上 Github Pages 幫我們架設的個人網站的網址</p>
+<p>Appearance：
+可以選擇在個人網站上面呈現的評論系統要是什麼顏色，如果是 Auto 就會自動偵測你網站的顏色選擇適合的主題。</p>
+<h4 id="comment-and-moderation-settings-評論和審核設置">Comment and Moderation Settings 評論和審核設置</h4>
+<p>依喜好選擇，點擊 Complete Setup 按鈕後，最後再點擊 Dismiss Setup。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2017.09.52.png?alt=media&amp;token=3116a1c9-65cb-4c66-b8cc-abc1cd7a8588"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h4 id="configyaml-設定">config.yaml 設定</h4>
+<p>disqusShortname 改成剛剛在 Disqus 上面申請的 Website Name 的值。不知道的可以點擊右上角 Edit Settings，回去看 Shortname。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2017.16.32.png?alt=media&amp;token=be1f37a3-8da5-44f3-b73d-dbe3a8f86f89"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2017.19.42.png?alt=media&amp;token=d0d8bc3e-93b0-4520-87e4-6ffc1a611536"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>將 Shortname 貼到 config.yaml 設定檔後存檔</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2017.21.14.png?alt=media&amp;token=857652ed-fef7-4d6a-8c1b-bab11cdf5504"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>執行 <code>hugo server</code>，隨選一篇文章，拉到最下面。看到此段表示你的 Disqus 設定已經設定好。Disqus 評論功能只有在你將設定上傳到 Github 之後才會生效。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2017.26.13.png?alt=media&amp;token=1b4ac53c-b90c-4b95-ad3f-1610c08838b6"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>回到終端機，按 <code>Ctrl+C</code> 停止 <code>hugo server</code> 運行，輸入 <code>hugo</code> 產生個人網站的程式碼。</p>
+<p>將 exampleSite &gt; public 資料夾裡全部內容複製到 <code>reiohuang.github.io</code> 資料夾中，勾選全部套用並取代。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2017.33.13.png?alt=media&amp;token=9739568d-58e9-4a9f-a9db-6dc14c4a80fe"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>提交 commit(add disqus) 並 push 到 Github</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2017.39.05.png?alt=media&amp;token=9eb87619-b972-475a-ba64-8e90a9ca8ac6"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="utterances-評論功能">Utterances 評論功能</h3>
+<p>捨棄 Disqus 的理由：<a class="link" href="https://bjmqfg83.github.io/blog/hugo_unnerances/"  target="_blank" rel="noopener"
+    >如何在hugo上安裝utterances?</a></p>
+<p>把個人網站的評論跟 Github issues 討論區的功能結合在一起，別人只要來個人網站上留下評論，實際上就是在 Github repository 裡面開啟一個 issue，就可以在 issue 裡面看到所有的評論紀錄。如果要在 Hugo 上加入這個 Utterances 的評論功能，需要有 html 程式碼的基礎。</p>
+<p>Utterances 評論產生的 issues 可以選擇你想放的 Repository 中：</p>
+<h4 id="issues-放在個人網站-repository">issues 放在個人網站 Repository</h4>
+<ol>
+<li>安裝 <a class="link" href="https://github.com/apps/utterances"  target="_blank" rel="noopener"
+    >Github App utterances</a></li>
+</ol>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2023.50.45.png?alt=media&amp;token=b14eba58-8192-4697-957c-e9b07e1279a8"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ol start="2">
+<li>repository 選個人網站的 repository</li>
+</ol>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2007.13.59.png?alt=media&amp;token=e6d9fcfc-3cf7-4df1-8799-d971dd6229ad"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ol start="3">
+<li>修改 config.yaml 如下圖紅框處</li>
+</ol>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2007.19.46.png?alt=media&amp;token=a5017c09-1642-4d1d-aab5-773b535a516b"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ol start="4">
+<li>登入 Github 帳號後即可留言</li>
+</ol>
+<p>留言會上傳到個人網站的 issue 區，別人只要來我的個人網站評論，就是在我的 Github repository 裡面開啟一個 issue。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2010.08.51.png?alt=media&amp;token=dca396c2-4c0d-400e-a023-41bffe8643ca"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h4 id="issues-放在新創的-repository">issues 放在新創的 Repository</h4>
+<ol>
+<li>
+<p>Create a new repository
+<img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2023.49.10.png?alt=media&amp;token=1982e1f1-9eea-4947-bf22-e373537e1bc5"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+</li>
+<li>
+<p>安裝 Github App utterances
+<img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2023.50.45.png?alt=media&amp;token=b14eba58-8192-4697-957c-e9b07e1279a8"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+</li>
+<li>
+<p>選擇剛剛新創建的 Github repo <code>reiohuang/comment-utterances</code>。
+<img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-13%20at%2023.52.55.png?alt=media&amp;token=1714ffe4-e24c-40a0-9039-cec7408991c5"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+</li>
+<li>
+<p>修改 config.yaml 如下圖紅框處
+<img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2000.04.45.png?alt=media&amp;token=c1676896-c05c-446d-a48c-45c77fef7e33"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+</li>
+<li>
+<p>登入 Github 帳號後即可留言
+<img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2000.16.31.png?alt=media&amp;token=62eccfcb-23b1-4d44-aa7b-f8e10dd5f696"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+</li>
+</ol>
+<p>留言測試
+<img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2000.19.29.png?alt=media&amp;token=09861ba8-3bf1-4790-844e-81a351c29cc7"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>留言會上傳到個人網站的 issue 區
+<img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2006.38.30.png?alt=media&amp;token=fb272e96-ffd0-40bb-a612-ee19379e64dc"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="添加-google-analytics">添加 Google Analytics</h2>
+<p>進到 <a class="link" href="https://analytics.google.com/analytics/web/provision/#/provision"  target="_blank" rel="noopener"
+    >Google Analytics (分析)</a>網站，點擊開始量測，開始 GA 的設定。</p>
+<p>帳戶名稱可以隨意填，全部都打勾。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2010.43.35.png?alt=media&amp;token=d57d3236-b2d7-41c2-9e62-7592c144ee6b"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>資源名稱填 Github 帳號，報表時區和幣別不用改。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2010.44.44.png?alt=media&amp;token=70bab5a6-ff7a-4c74-a5e0-f1cbfc6596aa"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>點擊顯示進階選項，開啟「建立通用 Analytics 分析資源」的開關，在網站網址裡面 填上個人網站的網址。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2010.47.29.png?alt=media&amp;token=3296ffca-e6d0-4d39-acdd-2e88c53e4baf"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>如下圖點選：</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2010.49.13.png?alt=media&amp;token=5e1f865c-6576-40bc-8242-25066f10900a"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2010.49.13.png?alt=media&amp;token=5e1f865c-6576-40bc-8242-25066f10900a"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>都打勾</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2010.50.47.png?alt=media&amp;token=66064243-acaa-4e1d-adf3-ff1bab963c26"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>建議把「成效建議與最新消息」打勾，這樣可以收到每個月 GA 傳來的報表。
+<img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2011.27.17.png?alt=media&amp;token=97479179-cc58-4b8f-b1c8-05814d7ce48c"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>成功創建一個資源後，會出現一個評估 ID，先複製下來。回到 VS Code，打開 Hugo 設定檔，找到 Google Analytics 的 ID 設定，貼上剛剛複製的追蹤 ID。
+註：從 GA4 開始，使用 <code>G-</code> 開頭的評估 ID，而不是 GA3 以 <code>UA-</code> 開頭的追蹤 ID。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2011.18.37.png?alt=media&amp;token=d3f6c2f0-eeb8-40b4-a6ef-ad0799e3c150"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>在 <code>config.yaml</code> 加上</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">googleAnalytics</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;GA4_評估_ID&gt;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2019.09.52.png?alt=media&amp;token=10ee1980-79b5-4390-a96b-107deb1c50f9"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>GA 的 ID 設定好之後，必須把這個改動上傳到 Github 才會生效。</p>
+<p>接著使用 Hugo 產生個人網站的程式碼，終端機輸入 hugo，產生個人網站的程式碼，public 資料夾產生了新的程式碼。把新產生出來的程式碼複製到 <code>GitHub/reiohuang.github.io</code> 資料夾，最後 push 到 GitHub 上，進到自己的個人網站。</p>
+<p>回到 Google Analytics 頁面查看，狀態已被改成「已順利啟用資料收集功能」，表示個人網站已經成功跟 GA 連結，這樣以後就可以使用 GA 來分析個人網站的數據。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2022.14.15.png?alt=media&amp;token=a6e5c106-1cd7-4111-a4f5-b1feb3a2dc79"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="主題無-googleanalytics-設定">主題無 googleAnalytics 設定</h3>
+<blockquote>
+<p>若主題裡面找不到 googleAnalytics 的設定，是因為主題本身沒有開啟 GA 設定的關係，所以在設定檔才找不到可以填上 GA ID 的地方。</p>
+</blockquote>
+<p>解決辦法：自己刻，需要一點 html 的程式碼基礎。
+進入 Hugo 首頁，Search the Docs 輸入 google analytics，點擊第一個<a class="link" href="https://gohugo.io/templates/internal#google-analytics"  target="_blank" rel="noopener"
+    >連結</a>。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2023.48.15.png?alt=media&amp;token=8d6a5471-9df4-426e-b54b-4d7ea1f80103"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>複製這行程式碼</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2023.52.36.png?alt=media&amp;token=4bc692fe-f56d-4d9d-9cd5-f9236cf911cf"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>回到 VS Code，以本主題 Stack 為例，進到 themes 去更改主題裡面的設定，路徑：<code>themes &gt; hugo-theme-stack &gt; layouts &gt; partials &gt; head &gt; head.html</code>，把剛剛複製的程式碼貼到裡面。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2023.42.22.png?alt=media&amp;token=a2b19001-1580-40bf-b8e4-b3f20ec3a01c"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>再回到 Hugo 的官方網站，選擇 yaml 格式，複製這行程式碼，貼到 config.yaml 設定檔。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2023.58.16.png?alt=media&amp;token=1de67616-1208-4902-8975-d0bb4a615d7e"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>config.yaml 設定檔， 填上你的評估 ID(G-MEASUREMENT_ID)。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-14%20at%2019.09.52.png?alt=media&amp;token=10ee1980-79b5-4390-a96b-107deb1c50f9"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>這樣就能讓沒有 googleAnalytics 設定的主題也支持 GA 設定，只要把自己的評估 ID 填在 G-MEASUREMENT_ID 即可。</p>
+<h2 id="添加-google-search-console">添加 Google Search Console</h2>
+<p>可以透過 Google 搜尋找到個人網站，如果想要讓文章可以通過 Google 搜尋被找到，就必須要為你的個人網站加上 Google Search Console 的功能。</p>
+<p>有一個簡單的方法可以驗證自己的個人網站是否已經可以被 Google 查詢到，在 Google 首頁搜尋列中輸入 <code>site:個人網站網址</code> 查詢。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2000.09.43.png?alt=media&amp;token=cf74f3e5-a1f6-4330-aa9d-6381fed91611"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>如果你的 Google 搜尋結果只有出現「請使用 Google Search Console」，就表示別人目前還沒有辦法在 Google 搜尋裡找到你的個人網站。</p>
+<h3 id="新增資源">新增資源</h3>
+<p>點擊新增資源</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2000.11.02.png?alt=media&amp;token=eddb2fa3-6b56-45e9-8392-c8064c752943"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>選擇右邊的這個網址前置字元，輸入個人網站的網址。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2000.16.15.png?alt=media&amp;token=50c99db9-fa64-41f0-851d-ddd039e287cc"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>設定 Google Search Console 的功能，點擊左邊的 Sitemap 把我們的個人網站的 Sitemap 加到 Google Search Console 裡面，直接在後面填上 <code>sitemap.xml</code>，點擊提交按鈕。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2000.18.10.png?alt=media&amp;token=a0e45a17-5ad7-444d-81d1-1cc5b4ed64e7"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>Google 之後會自己定期的去查看我們的 Sitemap，看看有沒有新的頁面出現，以後新增一篇文章，Google 就會自己發現，不用每次都還要重新上傳新的 Sitemap。</p>
+<h2 id="客製化現有主題">客製化現有主題</h2>
+<h3 id="修改程式碼樣式">修改程式碼樣式</h3>
+<p>這個修改的方式跟其他的比較不一樣，需要從 Hugo 的設定檔 config.yaml 去修改，而不是改 css 樣式。
+在 Hugo 網頁搜尋列輸入 <code>markup</code>，往下找到 <a class="link" href="https://gohugo.io/getting-started/configuration-markup#highlight"  target="_blank" rel="noopener"
+    >Highlight</a>。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2000.53.34.png?alt=media&amp;token=82afe7a4-d510-4a0c-86a5-ff2a5682e5cc"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>style 就是去設定程式碼的呈現樣式，這邊預設的是使用 monokai。</p>
+<p>回到 Hugo 官方文件，在設定檔的下面有兩個連結，可以看目前 Hugo 支持的程式碼主題樣式有哪一些，可以找出個人網站比較匹配的風格。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2000.54.44.png?alt=media&amp;token=13e0a946-b883-48f1-9bf6-560855366792"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>把 style 主題名字替換成 <code>dracula</code></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fhugo-stack%2FCleanShot%202022-09-15%20at%2001.10.30.png?alt=media&amp;token=8b886b5b-1eb3-4d02-b426-3a9a735ed3af"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="參考資料">參考資料</h2>
+<ul>
+<li><a class="link" href="https://docs.stack.jimmycai.com/zh/"  target="_blank" rel="noopener"
+    >Stack 官網</a></li>
+<li><a class="link" href="https://hugo-for-newbie.kejyun.com/"  target="_blank" rel="noopener"
+    >Hugo 新手道場</a></li>
+<li><a class="link" href="https://blog.kermsite.com/p/hugostack%E4%B8%BB%E9%A2%98/"  target="_blank" rel="noopener"
+    >KermsBlog</a></li>
+<li><a class="link" href="https://yinhe.co/archives/20210401_hugo_theme_stack.html"  target="_blank" rel="noopener"
+    >hugo主題stack</a></li>
+<li><a class="link" href="https://blog.kermsite.com/p/hugo-adsense/"  target="_blank" rel="noopener"
+    >Hugo：插入Adsense代碼</a></li>
+<li><a class="link" href="https://medium.com/@chswei/%E5%9C%A8-github-%E9%83%A8%E7%BD%B2-hugo-%E9%9D%9C%E6%85%8B%E7%B6%B2%E7%AB%99-9c40682dfe40"  target="_blank" rel="noopener"
+    >在 GitHub 部署 Hugo 靜態網站</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/hugo/">hugo</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="reiohuang/reiohuang.github.io"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2022 Reno&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.13.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目錄</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#在-mac-上使用-hugo-運行個人網站">在 Mac 上使用 Hugo 運行個人網站</a></li>
+    <li><a href="#config-參數設定">Config 參數設定</a>
+      <ol>
+        <li><a href="#基本參數">基本參數</a></li>
+        <li><a href="#permalinks">permalinks</a></li>
+        <li><a href="#site-creation-time-站點建立時間">Site creation time 站點建立時間</a></li>
+        <li><a href="#social-site">social site</a></li>
+      </ol>
+    </li>
+    <li><a href="#新增文章">新增文章</a>
+      <ol>
+        <li><a href="#分類文章為文章加上標籤">分類文章、為文章加上標籤</a>
+          <ol>
+            <li><a href="#頭字段front-matter">頭字段(Front Matter)</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#部署到-github-pages">部署到 Github Pages</a></li>
+    <li><a href="#添加評論功能">添加評論功能</a>
+      <ol>
+        <li><a href="#disqus-評論功能">Disqus 評論功能</a>
+          <ol>
+            <li><a href="#註冊網站">註冊網站</a></li>
+            <li><a href="#設定-disqus">設定 Disqus</a></li>
+            <li><a href="#comment-and-moderation-settings-評論和審核設置">Comment and Moderation Settings 評論和審核設置</a></li>
+            <li><a href="#configyaml-設定">config.yaml 設定</a></li>
+          </ol>
+        </li>
+        <li><a href="#utterances-評論功能">Utterances 評論功能</a>
+          <ol>
+            <li><a href="#issues-放在個人網站-repository">issues 放在個人網站 Repository</a></li>
+            <li><a href="#issues-放在新創的-repository">issues 放在新創的 Repository</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#添加-google-analytics">添加 Google Analytics</a>
+      <ol>
+        <li><a href="#主題無-googleanalytics-設定">主題無 googleAnalytics 設定</a></li>
+      </ol>
+    </li>
+    <li><a href="#添加-google-search-console">添加 Google Search Console</a>
+      <ol>
+        <li><a href="#新增資源">新增資源</a></li>
+      </ol>
+    </li>
+    <li><a href="#客製化現有主題">客製化現有主題</a>
+      <ol>
+        <li><a href="#修改程式碼樣式">修改程式碼樣式</a></li>
+      </ol>
+    </li>
+    <li><a href="#參考資料">參考資料</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
