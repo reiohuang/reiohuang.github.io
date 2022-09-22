@@ -196,9 +196,11 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;MX：指向電子郵件伺服器
-A：指向 IP
-CNAME：指向對方伺服器的網址名稱&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;MX：指向電子郵件伺服器&lt;!-- raw HTML omitted --&gt;
+A：指向 IP&lt;!-- raw HTML omitted --&gt;
+CNAME：指向對方伺服器的網址名稱&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;img src=&#34;https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2009.43.29.png?alt=media&amp;amp;token=9aaced4b-4433-498b-9bf8-e6154860656e&#34;
 	
 	
