@@ -6,7 +6,15 @@
         <description>Recent content in Tags on Reno&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Sun, 18 Sep 2022 09:53:50 +0800</lastBuildDate><atom:link href="https://reiohuang.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 22 Sep 2022 14:50:13 +0800</lastBuildDate><atom:link href="https://reiohuang.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>GA4</title>
+        <link>https://reiohuang.github.io/tags/ga4/</link>
+        <pubDate>Thu, 22 Sep 2022 14:50:13 +0800</pubDate>
+        
+        <guid>https://reiohuang.github.io/tags/ga4/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>hugo</title>
         <link>https://reiohuang.github.io/tags/hugo/</link>
         <pubDate>Sun, 18 Sep 2022 09:53:50 +0800</pubDate>

@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='GA4 流量分析設定'><title>使用 CloudFlare 託管網站</title>
+
+<link rel='canonical' href='https://reiohuang.github.io/2022/09/%E4%BD%BF%E7%94%A8-cloudflare-%E8%A8%97%E7%AE%A1%E7%B6%B2%E7%AB%99/'>
+
+<link rel="stylesheet" href="/scss/style.min.ac77dcf8b111b51da39a92990f431923f210f3876d85798a2125667f96dc33a4.css"><meta property='og:title' content='使用 CloudFlare 託管網站'>
+<meta property='og:description' content='GA4 流量分析設定'>
+<meta property='og:url' content='https://reiohuang.github.io/2022/09/%E4%BD%BF%E7%94%A8-cloudflare-%E8%A8%97%E7%AE%A1%E7%B6%B2%E7%AB%99/'>
+<meta property='og:site_name' content='Reno&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='GA4' /><meta property='article:published_time' content='2022-09-22T14:50:13&#43;08:00'/><meta property='article:modified_time' content='2022-09-22T14:50:13&#43;08:00'/><meta property='og:image' content='https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1115&q=80' />
+<meta name="twitter:title" content="使用 CloudFlare 託管網站">
+<meta name="twitter:description" content="GA4 流量分析設定"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1115&q=80' />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BMMSSMQS7N"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-BMMSSMQS7N', { 'anonymize_ip': false });
+}
+</script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <meta name="referrer" content="no-referrer-when-downgrade">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Reno&#39;s Blog</a></h1>
+            <h2 class="site-description"></h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/2022/09/%E4%BD%BF%E7%94%A8-cloudflare-%E8%A8%97%E7%AE%A1%E7%B6%B2%E7%AB%99/">
+                
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1115&amp;q=80" loading="lazy" alt="Featured image of post 使用 CloudFlare 託管網站" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/blog/" >
+                Blog
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/2022/09/%E4%BD%BF%E7%94%A8-cloudflare-%E8%A8%97%E7%AE%A1%E7%B6%B2%E7%AB%99/">使用 CloudFlare 託管網站</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            GA4 流量分析設定
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 22, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+        
+        
+        
+        <div class="meta-item">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">  
+            <span id="busuanzi_container_page_pv">
+                <i class="fa fa-eye"></i>　<span id="busuanzi_value_page_pv"></span> times read
+            </span>
+        </div>
+        
+
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="1購買網域">1.購買網域</h2>
+<p>至  <a class="link" href="https://tw.godaddy.com/domains"  target="_blank" rel="noopener"
+    >Godaddy 註冊網址</a>申請網域，<code>.tw</code> 網域第一年目前優惠中。我購買的網域名稱：<code>renokai.tw</code></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-21%20at%2023.27.05.png?alt=media&amp;token=6fbf6272-017d-4976-bc1b-8e27bb6b972e"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="2託管網域設定-dns">2.託管網域，設定 DNS</h2>
+<p>最終目的：將 <code>renokai.tw</code> 指向到我的 GitHub網址： <code>https://reiohuang.github.io/</code></p>
+<p>Godaddy 網域的 https 要另外付費，因此將 DNS 管理的權限提供給  <a class="link" href="https://www.cloudflare.com/zh-tw/"  target="_blank" rel="noopener"
+    >CloudFlare</a>，將網域託管到 CloudFlare，幫 GitHub Pages 自訂網址再透過 CloudFlare 加上 https。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2F2022-09-21-1358.svg?alt=media&amp;token=45bcb169-9ba7-4028-a587-2f5bd7ef6bf7"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>CDN 選擇 CloudFlare 作為 DNS 的託管服務
+(DNS：可以自訂網址，方便指向到對應主機位址。)
+<a class="link" href="https://www.cloudflare.com/zh-tw/learning/cdn/what-is-a-cdn/"  target="_blank" rel="noopener"
+    >什麼是 CDN？| CDN 的工作原理是什麼？</a></p>
+<p>指向的方式有兩種：</p>
+<ol>
+<li>指向 IP 位址</li>
+<li>指向網址(CNAME)</li>
+</ol>
+<p>CNAME：將一個網域或子網域轉寄到另一個網域，不提供 IP 位址。</p>
+<h3 id="cloudflare-託管設定">CloudFlare 託管設定</h3>
+<p>於首頁點選新增網站</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2007.08.48.png?alt=media&amp;token=79940175-c0a7-46d7-9a78-f83a1da2214a"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>輸入在 Godaddy 買的網域 <code>renokai.tw</code> 後，點選新增網站。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2007.13.13.png?alt=media&amp;token=da01aaba-78e9-41e3-b223-53ac920d4a86"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>選擇免費方案</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2007.15.38.png?alt=media&amp;token=d179eded-9fed-4a66-a561-696859f79bc9"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>CloudFlare 會幫你掃描 DNS 記錄後，自動匯入設定。發現有三個設定檔，這三個設定檔是從 Godday DNS 管理紀錄中，CloudFlare 去爬到的，很佛心的幫我們填到這裡來。按繼續下一步。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2007.20.24.png?alt=media&amp;token=1377c225-331a-4980-88ce-04ce3e5bfc3d"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>發現目前的東西在 Godday 上，要由 CloudFlare 託管：</p>
+<ol>
+<li>登入 Godday</li>
+<li>移除 Godday 下列兩個名稱伺服器</li>
+<li>把 CloudFlare 指向由 DNS 託管，複製 CloudFlare 名稱伺服器貼到 Godday</li>
+</ol>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2008.19.44.png?alt=media&amp;token=9eca3296-1f44-4ceb-95a7-90ee45e9926f"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>登入 Godaddy 後，點選我的產品→管理 DNS</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2008.24.28.png?alt=media&amp;token=41fd683e-d9fb-4424-911b-b371ebe5cbc0"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>點選變更</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2008.29.28.png?alt=media&amp;token=450d98e0-49bf-47ee-af75-312b89435c55"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>沒有要連到網站上，我要 CloudFlare 託管，所以要自己需入名稱伺服器，點選進階。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2008.30.21.png?alt=media&amp;token=161f9a33-a164-416e-9fd8-439b73b30e0b"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>貼上 CloudFlare 的兩個設定檔並儲存。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2008.33.05.png?alt=media&amp;token=814f4299-02d0-4610-a561-0d262e12cdcf"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>已變更的話，Godaddy 就會無法使用，點選<code>是</code>。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2008.58.19.png?alt=media&amp;token=e662504b-96c7-4610-b3dc-d1e49e873bd6"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>這頁在重新整理過後即消失</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2008.59.28.png?alt=media&amp;token=019f66e1-c77e-4f11-bad3-12c0d8dc10b7"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>重新整理頁面後顯示名稱伺服器已經不是 Godaddy 託管，是由 CloudFlare 託管。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2009.02.39.png?alt=media&amp;token=12a4eaef-d15e-476d-b4ef-53e7b60d20e4"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>回到 CloudFlare 點選完成並檢查名稱伺服器看有沒有成功</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2009.08.02.png?alt=media&amp;token=d26d9868-0091-4bdb-8be1-c16ebe1540e4"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>跳過建議，點選稍後完成。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2009.10.25.png?alt=media&amp;token=1d4bacf7-08de-4aac-ab99-ef473c0c0b74"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>不是即時，更新速度不是那麼快，可能還在跑，點擊 <code>檢查名稱伺服器</code>，顯示還在更新，請耐心等候。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2009.25.56.png?alt=media&amp;token=7ebae428-2b69-4680-941a-b9ca4ad531af"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="設定-dns">設定 DNS</h3>
+<p>點選 CloudFlare 左側欄位的 DNS</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2009.40.46.png?alt=media&amp;token=faa096b3-b342-4919-9c68-92bcdb09005e"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>MX：指向電子郵件伺服器
+A：指向 IP
+CNAME：指向對方伺服器的網址名稱</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2009.43.29.png?alt=media&amp;token=9aaced4b-4433-498b-9bf8-e6154860656e"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>以 GitHub 的要求來說，需建立 CNAME 來指向。
+假設我要架設一個購物網站，類型：<code>CNAME</code> ，名稱：<code>shop</code>，內容：<code>reiohuang.github.io</code></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2010.08.20.png?alt=media&amp;token=388a8f97-ff5e-4b6a-8dab-3cc9704347e7"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>目前做到這一步，已經是將 Godaddy 的 DNS 託管到 CloudFlare 並指向到 <code>reiohuang.github.io</code>，但是你的 GitHub Repositories 那麼多，如何知道要連到哪個網站？
+接下來就交由 GitHub 後台來處理，這就是 CNAME 指向的優點。</p>
+<h3 id="github-pages-設定-custom-domain">GitHub Pages 設定 Custom domain</h3>
+<p>點選想要指向的 GitHub Repositories <code>reiohuang / week7-aos-glasses</code> → 點選 Pages 在 Custom domain 輸入<code>shop.renokai.tw</code> (shop 為名稱，renokai.tw 為自己所購買的網域)，最後點選 Save。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2010.27.02.png?alt=media&amp;token=85b828f2-0776-4643-a2fd-5ab5c53d34de"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>因為服務不是即時，這段時間 GitHub 也是會問 CloudFlare 指向過來了沒，請耐心等候它同步，過程花 2~4 小時，也是有可能的。</p>
+<p>成功後會顯示綠色打勾</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2010.31.50.png?alt=media&amp;token=f8b7e278-194b-4737-a32c-1cf8d3915373"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>部署成功後的網址顯示：<code>http://shop.renokai.tw/</code></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2010.37.19.png?alt=media&amp;token=ff1a0f8c-a1a0-4291-81a9-694f55bdacd5"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>但 GitHub 這個網址是不安全的，http 少了 <code>s</code>。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2010.38.39.png?alt=media&amp;token=36e3c1b8-22af-4d10-973d-054efe887450"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>可自行加上 <code>s</code>，CloudFlare 自動幫掛上保護 SSL 的 https，有鎖頭 icon。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2010.48.29.png?alt=media&amp;token=63b2db21-156e-4786-be21-57c9b7a25682"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="http-強制轉成-https">http 強制轉成 https</h3>
+<p>使用 CloudFlare 規則→建立網頁規則</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2010.52.27.png?alt=media&amp;token=8fe514b1-ef25-40ca-b854-58aeaa9f081c"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>輸入網址 <code>shop.renokai.tw</code>，並選擇一律使用 HTTPS 後儲存並佈署。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2010.55.47.png?alt=media&amp;token=84d80766-f819-49ee-8222-0215a1aa0663"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>加入此規則後，即使 http 沒有加 <code>s</code>，也會自動強制轉成 http<code>s</code>。</p>
+<h2 id="3google-search-console">3.Google search console</h2>
+<p>輸入要提交的網址：<code>www.renokai.tw</code></p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2012.13.20.png?alt=media&amp;token=bda77db2-e047-4422-b732-1cd94704d7d7"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>複製 TXT 記錄</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2012.21.00.png?alt=media&amp;token=150c262a-3af8-4d51-9e1f-b3223cafef91"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="設定-dns-1">設定 DNS</h3>
+<p>雖然網域是在 Godaddy 買的，但已託管給 CloudFlare，到 CloudFlare 做設定。
+點選 CloudFlare 左側欄位的 DNS，點選新增記錄。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2009.40.46.png?alt=media&amp;token=faa096b3-b342-4919-9c68-92bcdb09005e"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>建立來指向 Blog 網站，類型：<code>TXT</code> ，名稱：<code>@</code>，內容：<code>剛剛複製的 TXT 記錄</code>。
+TXT 是一個記錄檔，確認你是不是持有人。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2013.47.21.png?alt=media&amp;token=ff61b725-3d2b-4e85-8f5c-d2dabc0ae72b"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>回到 google search console 按下驗證，成功後畫面如下：</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2013.13.40.png?alt=media&amp;token=e799d0f2-62fd-4187-84dc-b802108107f1"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>提交完成後，大約要等24小時才會有數據。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2013.51.28.png?alt=media&amp;token=23a33c7a-71ec-4ba7-b834-e8d7ff8c6f53"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="使用-google-analyticsga-追蹤流量">使用 Google Analytics(GA) 追蹤流量</h2>
+<p>管理→建立帳戶，輸入帳戶名稱：<code>renokai.tw</code>，點選下一個。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2014.04.55.png?alt=media&amp;token=b6dca264-79ef-440e-ba6a-c8540d197932"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>輸入資源名稱後點選下一步</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2014.08.40.png?alt=media&amp;token=0982bef5-731d-4241-8278-a2500c1c418e"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>使用者條款勾選接受</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2014.10.26.png?alt=media&amp;token=92599e1b-ff79-45d1-ae79-b898a204b68c"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>點選網站</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2014.12.06.png?alt=media&amp;token=b690a9a6-a2ee-4f2b-a46e-306a696f7530"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>建立網頁串流</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2014.14.28.png?alt=media&amp;token=8d6a302d-82b3-4fdb-b866-95c63a6a1c66"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>點選安裝操作說明</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2014.21.49.png?alt=media&amp;token=6a5a6e74-241d-4ee6-838c-0f0d5d557255"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>複製全域網站代碼放入自己的網頁中(layout.ejs)。</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/blog-img-0909.appspot.com/o/blog%2Fdepoly-website%2FCleanShot%202022-09-22%20at%2014.20.31.png?alt=media&amp;token=de021db4-be32-4bb2-a14b-3e7ec72ed6bf"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h2 id="參考來源">參考來源</h2>
+<ul>
+<li><a class="link" href="https://hackmd.io/@JHOUJHOU/HJbwQIIZF"  target="_blank" rel="noopener"
+    >網站上線全攻略</a></li>
+<li><a class="link" href="https://hackmd.io/@SkT7-27LSWWQi5G2DJBLkw/rkL61UzEt"  target="_blank" rel="noopener"
+    >如何上架網頁</a></li>
+<li><a class="link" href="https://hackmd.io/@ahadevops/r1WxtLJOq"  target="_blank" rel="noopener"
+    >建立網路託管-GODADDY+CDN</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/ga4/">GA4</a>
+        
+    </section>
+
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/2022/09/vistor-views/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://images.unsplash.com/photo-1517732306149-e8f829eb588a?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1172&amp;q=80" loading="lazy" data-key="vistor-views" data-hash="https://images.unsplash.com/photo-1517732306149-e8f829eb588a?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1172&amp;q=80"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Hugo 使用不蒜子 Busuanzi 加入瀏覽數</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/2022/09/hugo-stack/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80" loading="lazy" data-key="hugo-stack" data-hash="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=2070&amp;q=80"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">部署 Hugo 靜態網站</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="reiohuang/reiohuang.github.io"
+        issue-term="pathname"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2022 Reno&#39;s Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.13.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#1購買網域">1.購買網域</a></li>
+    <li><a href="#2託管網域設定-dns">2.託管網域，設定 DNS</a>
+      <ol>
+        <li><a href="#cloudflare-託管設定">CloudFlare 託管設定</a></li>
+        <li><a href="#設定-dns">設定 DNS</a></li>
+        <li><a href="#github-pages-設定-custom-domain">GitHub Pages 設定 Custom domain</a></li>
+        <li><a href="#http-強制轉成-https">http 強制轉成 https</a></li>
+      </ol>
+    </li>
+    <li><a href="#3google-search-console">3.Google search console</a>
+      <ol>
+        <li><a href="#設定-dns-1">設定 DNS</a></li>
+      </ol>
+    </li>
+    <li><a href="#使用-google-analyticsga-追蹤流量">使用 Google Analytics(GA) 追蹤流量</a></li>
+    <li><a href="#參考來源">參考來源</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
