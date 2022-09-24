@@ -8,10 +8,10 @@
         <language>en</language>
         <lastBuildDate>Thu, 22 Sep 2022 14:50:13 +0800</lastBuildDate><atom:link href="https://reiohuang.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>使用 CloudFlare 託管網站</title>
-        <link>https://reiohuang.github.io/2022/09/%E4%BD%BF%E7%94%A8-cloudflare-%E8%A8%97%E7%AE%A1%E7%B6%B2%E7%AB%99/</link>
+        <link>https://reiohuang.github.io/2022/09/deploy-website/</link>
         <pubDate>Thu, 22 Sep 2022 14:50:13 +0800</pubDate>
         
-        <guid>https://reiohuang.github.io/2022/09/%E4%BD%BF%E7%94%A8-cloudflare-%E8%A8%97%E7%AE%A1%E7%B6%B2%E7%AB%99/</guid>
+        <guid>https://reiohuang.github.io/2022/09/deploy-website/</guid>
         <description>&lt;img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1115&q=80" alt="Featured image of post 使用 CloudFlare 託管網站" /&gt;&lt;h2 id=&#34;1購買網域&#34;&gt;1.購買網域&lt;/h2&gt;
 &lt;p&gt;至  &lt;a class=&#34;link&#34; href=&#34;https://tw.godaddy.com/domains&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Godaddy 註冊網址&lt;/a&gt;申請網域，&lt;code&gt;.tw&lt;/code&gt; 網域第一年目前優惠中。我購買的網域名稱：&lt;code&gt;renokai.tw&lt;/code&gt;&lt;/p&gt;
