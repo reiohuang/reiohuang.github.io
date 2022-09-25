@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>fish shell on Reno&#39;s Blog</title>
-        <link>https://reiohuang.github.io/tags/fish-shell/</link>
+        <link>https://www.renokai.tw/tags/fish-shell/</link>
         <description>Recent content in fish shell on Reno&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Sat, 10 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://reiohuang.github.io/tags/fish-shell/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 10 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.renokai.tw/tags/fish-shell/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Mac 安裝 Fish Shell</title>
-        <link>https://reiohuang.github.io/2022/09/fish-shell/</link>
+        <link>https://www.renokai.tw/2022/09/fish-shell/</link>
         <pubDate>Sat, 10 Sep 2022 00:00:00 +0000</pubDate>
         
-        <guid>https://reiohuang.github.io/2022/09/fish-shell/</guid>
+        <guid>https://www.renokai.tw/2022/09/fish-shell/</guid>
         <description>&lt;img src="https://images.unsplash.com/photo-1544552866-d3ed42536cfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80" alt="Featured image of post Mac 安裝 Fish Shell" /&gt;&lt;h2 id=&#34;所須套件&#34;&gt;所須套件&lt;/h2&gt;
 &lt;p&gt;▶ My shell setup:&lt;/p&gt;
 &lt;ul&gt;

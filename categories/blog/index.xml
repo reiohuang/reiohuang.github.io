@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Blog on Reno&#39;s Blog</title>
-        <link>https://reiohuang.github.io/categories/blog/</link>
+        <link>https://www.renokai.tw/categories/blog/</link>
         <description>Recent content in Blog on Reno&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 22 Sep 2022 14:50:13 +0800</lastBuildDate><atom:link href="https://reiohuang.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 22 Sep 2022 14:50:13 +0800</lastBuildDate><atom:link href="https://www.renokai.tw/categories/blog/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>使用 CloudFlare 託管網站</title>
-        <link>https://reiohuang.github.io/2022/09/deploy-website/</link>
+        <link>https://www.renokai.tw/2022/09/deploy-website/</link>
         <pubDate>Thu, 22 Sep 2022 14:50:13 +0800</pubDate>
         
-        <guid>https://reiohuang.github.io/2022/09/deploy-website/</guid>
+        <guid>https://www.renokai.tw/2022/09/deploy-website/</guid>
         <description>&lt;img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1115&q=80" alt="Featured image of post 使用 CloudFlare 託管網站" /&gt;&lt;h2 id=&#34;1購買網域&#34;&gt;1.購買網域&lt;/h2&gt;
 &lt;p&gt;至  &lt;a class=&#34;link&#34; href=&#34;https://tw.godaddy.com/domains&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Godaddy 註冊網址&lt;/a&gt;申請網域，&lt;code&gt;.tw&lt;/code&gt; 網域第一年目前優惠中。我購買的網域名稱：&lt;code&gt;renokai.tw&lt;/code&gt;&lt;/p&gt;
@@ -423,10 +423,10 @@ TXT 是一個記錄檔，確認你是不是持有人。&lt;/p&gt;
         </item>
         <item>
         <title>Hugo 使用不蒜子 Busuanzi 加入瀏覽數</title>
-        <link>https://reiohuang.github.io/2022/09/vistor-views/</link>
+        <link>https://www.renokai.tw/2022/09/vistor-views/</link>
         <pubDate>Sun, 18 Sep 2022 09:53:50 +0800</pubDate>
         
-        <guid>https://reiohuang.github.io/2022/09/vistor-views/</guid>
+        <guid>https://www.renokai.tw/2022/09/vistor-views/</guid>
         <description>&lt;img src="https://images.unsplash.com/photo-1517732306149-e8f829eb588a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80" alt="Featured image of post Hugo 使用不蒜子 Busuanzi 加入瀏覽數" /&gt;&lt;h2 id=&#34;引入&#34;&gt;引入&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -597,10 +597,10 @@ TXT 是一個記錄檔，確認你是不是持有人。&lt;/p&gt;
         </item>
         <item>
         <title>部署 Hugo 靜態網站</title>
-        <link>https://reiohuang.github.io/2022/09/hugo-stack/</link>
+        <link>https://www.renokai.tw/2022/09/hugo-stack/</link>
         <pubDate>Thu, 15 Sep 2022 08:52:34 +0800</pubDate>
         
-        <guid>https://reiohuang.github.io/2022/09/hugo-stack/</guid>
+        <guid>https://www.renokai.tw/2022/09/hugo-stack/</guid>
         <description>&lt;img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="Featured image of post 部署 Hugo 靜態網站" /&gt;&lt;h2 id=&#34;在-mac-上使用-hugo-運行個人網站&#34;&gt;在 Mac 上使用 Hugo 運行個人網站&lt;/h2&gt;
 &lt;p&gt;先安裝 Homebrew，再透過 Homebrew 安裝 hugo &lt;code&gt;brew install hugo&lt;/code&gt;。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
